@@ -1,0 +1,2 @@
+﻿Golang中国会员须知：Golang中国网站上的源码目前只开放部分，后续会逐步开放，欢迎加入Golang中国官方学习群：816085262，免费获得技术答疑。
+Golang中国官方网址：www.qfgolang.com。

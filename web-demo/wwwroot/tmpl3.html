@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Action</title>
+</head>
+<body>
+
+<!--    {{ if . }}-->
+<!--    bigger than 5-->
+<!--    {{ else }}-->
+<!--    less than 5-->
+<!--    {{ end }}-->
+
+<!--注意这里的两个点是不一样的-->
+    <ul>
+        {{ range .}}
+        <li>{{ . }}</li>
+        {{else}}
+        <li>Nothing to show!</li>
+        {{end}}
+    </ul>
+
+</body>
+</html>

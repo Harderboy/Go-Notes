@@ -1,0 +1,28 @@
+{{define "layout"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Go Web Programming</title>
+</head>
+<body>
+<h1>hello world!</h1>
+<form action="http://localhost:8080/process?hello=world&thread=123" method="post" enctype="multipart/form-data">
+    <input type="text" name="hallo" value="tomato">
+    <input type="text" name="post" value="456">
+    <input type="file" name="uploaded">
+    <input type="submit">
+</form>
+
+<!--<div>{{template "content" .}}</div>-->
+<!--html/template:index.html:18:16: no such template "content" -->
+
+    {{ block "content" . }}
+    110
+    {{ end }}
+
+</body>
+</html>
+
+{{end}}

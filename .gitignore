@@ -1,0 +1,13 @@
+# macOS
+.DS_Store
+
+# VisualStudioCode
+.vscode/*
+.history/
+
+# JetBrains Rider
+.idea/
+
+# Python Tools for Visual Studio (PTVS)
+__pycache__/
+*.pyc

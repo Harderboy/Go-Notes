@@ -1,0 +1,3 @@
+LH: 2021/07/30 01:53:34 1234
+LH: 2021/07/30 01:57:43.954158 /Users/didi/Desktop/Recent-Notes/Go入门笔记/log/log_level.go:19: 1234
+Error: 2021/07/30 13:11:44 logger_demo.go:34: 出现了故障
