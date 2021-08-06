@@ -498,13 +498,13 @@ fmt.Println(sl1)
 - go 中没有引用传递，只有值传递，每个变量都是唯一的，值传递即拷贝副本 带总结
   - [go 中没有引用传递](https://zhuanlan.zhihu.com/p/388808744?utm_source=wechat_session&utm_medium=social&utm_oi=630516272207761408)
 
+- 程序中可能会使用到这些标点符号：; 和 …。
+  - `;` `…` 使用场景
+  - Go 语言中变量的声明必须使用空格隔开
+  `var age int;`
+
 ## 参考
 
 部分笔记采取“直接搬来”，部分加上自己的理解！
 
 - [Go 语言基础语法](https://www.runoob.com/go/go-basic-syntax.html)
-
-- 程序中可能会使用到这些标点符号：; 和 …。
-  - `;` `…` 使用场景
-  - Go 语言中变量的声明必须使用空格隔开
-  `var age int;`、`fruit = apples + oranges;`
