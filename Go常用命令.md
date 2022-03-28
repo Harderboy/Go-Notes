@@ -13,14 +13,20 @@
 tomato@DESKTOP-DNRME39:~/go-demo$ tree
 .
 ├── go-test
-├── go.mod
+├── go.mod  # module go-demo
 ├── go.sum
 ├── main.go
-└── test-package
-    └── test.go
-tomato@DESKTOP-DNRME39:~/go-demo$ go build test
+└── numberdemo  # package numberdemo
+    └── number.go
+tomato@DESKTOP-DNRME39:~/go-demo$ go build numberdemo
 package test is not in GOROOT (/usr/local/go/src/test)
 ```
+
+解决思路：
+
+`go build` 入口是一个main包，有main包才能编译成可执行文件，一个mian包里只能有一个唯一的main方法。
+
+因此可以通过指定模块名（）
 
 关于多个包、嵌套包的导入可参考 ["package XXX is not in GOROOT" when building a Go project](https://stackoverflow.com/questions/61845013/package-xxx-is-not-in-goroot-when-building-a-go-project)
 
