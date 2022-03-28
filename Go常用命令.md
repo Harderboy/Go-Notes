@@ -7,6 +7,31 @@
 - [ ] 其他高级用法，慢慢补充
 - [ ] 一些命令使用的细节问题，慢慢补充
 
+## 遇到的错误和解决方法
+
+```bash
+tomato@DESKTOP-DNRME39:~/go-demo$ tree
+.
+├── go-test
+├── go.mod
+├── go.sum
+├── main.go
+└── test-package
+    └── test.go
+tomato@DESKTOP-DNRME39:~/go-demo$ go build test
+package test is not in GOROOT (/usr/local/go/src/test)
+```
+
+关于多个包、嵌套包的导入可参考 ["package XXX is not in GOROOT" when building a Go project](https://stackoverflow.com/questions/61845013/package-xxx-is-not-in-goroot-when-building-a-go-project)
+
+## 源码文件
+
+Go 语言的源码文件分为三类：命令源码、库源码、测试源码。
+
+- 命令源码文件：是 Go 程序的入口，包含 func main() 函数，且第一行用 package main 声明属于 main 包。
+- 库源码文件：主要是各种函数、接口等，例如工具类的函数。
+- 测试源码文件：以 `_test.go` 为后缀的文件，用于测试程序的功能和性能。
+
 ## Go 相关变量
 
 ![Go 相关变量](./images/govariables.png)
@@ -53,13 +78,17 @@ go build 有很多种编译方法，如无参数编译、文件列表编译、�
 
 有以下几种编译方式：
 
-- `go build` ：无参数编译，生成的可执行程序名称和目录名（模块名称）一致，默认会编译当前目录下的所有go文件
+- `go build` ：无参数编译，生成的可执行程序名称和目录名（模块名称）一致，默认会编译当前目录下的所有go文件，前提是该目录下有main包
 - `go build 单个文件`: 可执行文件名称和文件名称一样
-- `go build 文件列表`：使用“go build+文件列表”方式编译时，可执行文件默认选择文件列表中第一个源码文件作为可执行文件名输出。
-- `go build 包`：可执行程序名称和模块名称一致
+- `go build 文件列表`：使用“go build+文件列表”方式编译时，可执行文件默认选择文件列表中第一个源码文件名作为可执行文件名输出。
+- `go build 包名`：可执行程序名称和包名（模块名称）一致。包名即go.mod中module对应的名称。
 
 若要指定文件名，可使用参数 `-o`，也可指定文件输出的目录。
 `go build -o main.exe`
+
+`go build` 会忽略 `*_test.go` 文件。
+
+具体可通过 `go help build` 查看
 
 参考 [go build命令（go语言编译命令）完全攻略](http://c.biancheng.net/view/120.html)
 
@@ -100,7 +129,7 @@ go mod 想下载指定的版本 通常我们有三种做法
 |参数|含义|
 |-|-|
 |-d|只下载，不安装|
-|-u|更新包版本|
+|-u|会升级到最新的次要版本或者修订版本(x.y.z, z是修订版本号， y是次要版本号)|
 
 总结：
 
@@ -125,6 +154,10 @@ go mod 想下载指定的版本 通常我们有三种做法
 
 ### go mod
 
+> GO Modules 也称作 go mod，是golang 官方最新的几个golang 版本中推出的包管理方式或者称作模块支持
+>> golang 中 modules (模块)是什么意思呢?
+>>>一个模块是一系列 Go 代码包的集合，它们保存在同一个文件树中。文件树的根目录中包含了一个 go.mod 文件。go.mod 文件定义了一个模块的 module path，这就是模块根目录的导入路径。go.mod 文件还定义了模块的 dependency requirements（依赖项要求），即为了编译本模块，需要用到哪些其它的模块。每一项依赖项要求都包含了依赖项的 module path，还要指定它的语义版本。
+
 常用命令：
 
 - `go help mod`：查看基本用法：
@@ -133,13 +166,14 @@ go mod 想下载指定的版本 通常我们有三种做法
 - `go mod tidy`：增加缺失的Module，删除无效的Module
 - `go mod download` 可以下载所需要的依赖，但是依赖并不是下载到`$GOPATH`中，而是`$GOPATH/pkg/mod`中，多个项目可以共享缓存的module。
 
-go.mod 文件简介:
+go.mod 提供了module, require、replace和exclude 四个命令：
 
-- module 用来定义包名和我们初始化的包名是一致的
-
+- module 用来定义包名（路径）和我们初始化的包名是一致的
 - require 定义依赖的包及其对应的版本
+  - indirect 标识间接引用
 
-- indirect 标识间接引用
+- replace 语句可以替换依赖项模块
+- exclude 语句可以忽略依赖项模块
 
 参考：[跳出Go module的泥潭](https://colobu.com/2018/08/27/learn-go-module/)
 
@@ -159,6 +193,17 @@ gofmt 是一个 cli 程序，会优先读取标准输入，如果传入了文件
 ### go run
 
 运行源码文件/编译并运行Go程序
+
+go run其实是执行一个exe文件(window)，go build 入口是一个main包，有main包才能生产exe文件，一个mian包里只能有一个唯一的main方法
+
+只有主包中的文件是可执行的，即具有声明package main的文件
+
+go run 执行方式参考 ["package XXX is not in GOROOT" when building a Go project](https://stackoverflow.com/questions/61845013/package-xxx-is-not-in-goroot-when-building-a-go-project)
+
+结合上述参考链接总结得：
+
+- 在项目目录下只有main包，同时main包下有其他文件，运行程序需执行：`go run .`
+- 在项目目录下有多个自定义包（嵌套包），同时main包下只有main.go，且main.go引用了自定义包的变量，运行此程序执行：`go run main.go` 即可
 
 ### go clean
 
