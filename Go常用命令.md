@@ -169,7 +169,7 @@ go mod 想下载指定的版本 通常我们有三种做法
 - `go help mod`：查看基本用法：
 
 - `go mod init`: 初始化当前目录中的新模块，创建go.mod文件，后跟模块名称，可以是多级目录，如`github.com/captain/modDemo`
-- `go mod tidy`：增加缺失的Module，删除无效的Module
+- `go mod tidy`：添加已使用但go.mod中不存在的模块，删除未使用的模块(Module) （require后跟的模块名（依赖包））
 - `go mod download` 可以下载所需要的依赖，但是依赖并不是下载到`$GOPATH`中，而是`$GOPATH/pkg/mod`中，多个项目可以共享缓存的module。
 
 go.mod 提供了module, require、replace和exclude 四个命令：

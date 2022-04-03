@@ -1,5 +1,11 @@
 # 记录学 go 的过程
 
+官方文档:
+
+- [Go Standard library](https://pkg.go.dev/std)
+- [Go Packages](http://docscn.studygolang.com/pkg/)
+- [Golang 标准库文档](https://studygolang.com/pkgdoc)
+
 学习资料链接:
 
 - [Go 语言编程快速入门（Golang）](https://www.bilibili.com/video/BV1fD4y1m7TD?p=1)
@@ -10,12 +16,6 @@
   - [Golang-100-Days](https://github.com/rubyhan1314/Golang-100-Days)
   - [Go 语言中包的使用](https://www.qfgolang.com/?special=baoguanli)
 - [Go 语言（C 语言中文网）](http://c.biancheng.net/golang/intro/)
-
-官方文档
-
-- [Golang 标准库文档](https://studygolang.com/pkgdoc)
-- [Go Standard library](https://pkg.go.dev/std) 
-- [Go Packages](http://docscn.studygolang.com/pkg/)
 
 ## IDE 配置：vsode 插件配置、激活码
 
@@ -330,6 +330,7 @@ new与make的区别：
 
 - [[golang] 变量声明和初始化 var, :=, new() 和 make()](https://www.cnblogs.com/steven-yang/p/14621297.html)
 - [Go语言 - 指针 | new | make](https://blog.csdn.net/Waller_/article/details/103320430)
+
 ## 格式化打印
 
 参考：[Go语言格式化输出](http://www.weixueyuan.net/a/475.html)
