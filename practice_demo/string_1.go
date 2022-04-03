@@ -23,5 +23,19 @@ func main() {
 			counts++
 		}
 	}
-	fmt.Printf("%T", resMap)
+	fmt.Printf("%T\n", resMap)
+
+	s2 := "欢迎学习Go的len()函数的使用"
+	fmt.Println(count(s2)) //14
+
+	fmt.Println(len(s2)) // 37 utf-8
+}
+
+func count(str string) int {
+    r := []rune(str)
+    // count:=0
+    // for _:=range str{
+        // count++
+    // }
+    return len(r)
 }
