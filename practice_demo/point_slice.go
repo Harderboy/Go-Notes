@@ -8,7 +8,7 @@ slice是指向数组的窗口，实际上slice在指向数组元素的时候也�
 	数组的指针
 	slice的容量
 	slice的长度
-当slice被直接传递至函数或方法时，slice的内部指针就可以对底层数据进行修改
+当slice被直接传递至函数或方法时，slice的内部指针就可以对底层数据(数组)进行修改
 
 指向slice的显式指针的唯一作用就是修改slice本身，slice的长度、容量以及起始偏移量
 */
@@ -28,5 +28,7 @@ func main() {
 	planets := []string{"a","b","c","d","e"}
 
 	reclassify(&planets)
+	fmt.Println(planets)
+	planets=planets[0:3]
 	fmt.Println(planets)
 }
