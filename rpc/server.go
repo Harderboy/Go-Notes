@@ -5,6 +5,7 @@ import (
 	"net"
 	"net/http"
 	"net/rpc"
+	"rpc-demo/param"
 )
 
 // 数学计算
@@ -14,6 +15,11 @@ type MathUtil struct {
 // 该方法向外暴露 提供计算圆形面积的服务
 func (mu *MathUtil) CalculateCircleArea(req float32, res *float32) error {
 	*res = math.Pi * req * req
+	return nil
+}
+
+func (mu *MathUtil) Add(param param.AddParam, res *float32) error {
+	*res = param.Arg1 + param.Arg2
 	return nil
 }
 
