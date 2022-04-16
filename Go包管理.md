@@ -93,7 +93,7 @@ Go 语言的入口 main() 函数所在的包（package）叫 main，main 包想�
 导入的包分为本地依赖包、网络依赖包，
 
 - 如果需要导入的本地包是其他模块，需要在go.mod中使用replace将依赖包替换成绝对路径，参考 **[如何使用go module导入本地包](https://www.liwenzhou.com/posts/Go/import_local_package_in_go_module/)**、**[golang包管理](http://masaka.tech/golang%E5%8C%85%E7%AE%A1%E7%90%86/)**
-- 导入同一模块下的普通包，导入路径为：`模块名称/包所在目录`（引入相对该module的路径），比如`import "go-demo/numberdemo"`，其中`go-demo` 为module名称，`numberdemo` 为要引入的包所在的目录
+- 如果 `GO111MODULE=on`即存在`go.mod`时，导入同一模块下的普通包，导入路径为：`模块名称/包所在目录`（引入相对该module的路径），比如`import "go-demo/numberdemo"`，其中`go-demo` 为module名称，`numberdemo` 为要引入的包所在的目录，如果`GO111MODULE=off`或者`GO111MODULE=auto`时，且项目代码不在`$GOPATH/src`下时，支持通过相对路径来导入包，如导入当前目录下的utils包，只需`import "./utils"`即可，注意`"./utils"`指的是要导入的包所在路径（文件夹/目录），包名可能不是utils，代码中使用对应包名即可。（文件夹名和包名最好一致是最佳实践（好习惯））
 - 其他常见错误，参考 [Golang Package 与 Module 简介](https://www.jianshu.com/p/07ffc5827b26)
 
 参考：
